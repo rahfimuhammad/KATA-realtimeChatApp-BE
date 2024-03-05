@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'https://5814-111-94-116-173.ngrok-free.app/',
+    origin: ['http://5814-111-94-116-173.ngrok-free.app/', 'http://localhost:3000'],
     methods: ['GET', 'POST'],
   },
 });
