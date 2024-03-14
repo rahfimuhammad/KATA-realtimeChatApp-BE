@@ -1,10 +1,21 @@
 const express = require('express');
+const session = require("express-session")
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 
 const app = express();
+require('dotenv').config()
+app.use(express.json());
 const server = http.createServer(app);
+app.use(session({
+  secret: process.env.SESS_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+      secure: 'auto'
+  }
+}))
 const io = socketIo(server, {
   cors: {
     origin: ['http://5814-111-94-116-173.ngrok-free.app/', 'http://localhost:3000', 'http://192.168.1.102:3000', 'http://192.168.1.100:3000', 'http://192.168.1.101:3000'],
@@ -39,6 +50,14 @@ app.get('/', (req, res) => {
 })
 
 const PORT = process.env.PORT || 5000;
+
+const usersController = require("./users/users.controller")
+const contactController = require("./contact/contact.controller")
+const authController = require("./auth/auth.controller")
+
+app.use("/users", usersController)
+app.use("/contact", contactController)
+app.use(authController)
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
