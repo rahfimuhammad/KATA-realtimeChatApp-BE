@@ -18,8 +18,8 @@ app.use(session({
 }))
 const io = socketIo(server, {
   cors: {
-    origin: ['https://kata-app.netlify.app/', 
-             'http://kata-app.netlify.app/', 
+    origin: ['https://kata-app.netlify.app', 
+             'http://kata-app.netlify.app', 
              'http://localhost:3000', ],
     methods: ['GET', 'POST'],
   },
