@@ -18,7 +18,7 @@ app.use(session({
 }))
 const io = socketIo(server, {
   cors: {
-    origin: ['http://5814-111-94-116-173.ngrok-free.app/', 'http://localhost:3000', 'http://192.168.1.102:3000', 'http://192.168.1.100:3000', 'http://192.168.1.101:3000'],
+    origin: ['https://kata-app.netlify.app/', 'http://kata-app.netlify.app/', 'http://5814-111-94-116-173.ngrok-free.app/', 'http://localhost:3000', 'http://192.168.1.102:3000', 'http://192.168.1.100:3000', 'http://192.168.1.101:3000'],
     methods: ['GET', 'POST'],
   },
 });
