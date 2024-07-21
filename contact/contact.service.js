@@ -66,5 +66,6 @@ const getProfile = async (userId) => {
 module.exports = {
     isContact,
     addToContact,
-    getContact
+    getContact,
+    getProfile
 }
