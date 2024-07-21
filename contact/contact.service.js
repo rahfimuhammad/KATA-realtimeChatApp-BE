@@ -48,6 +48,21 @@ const getContact = async (userId) => {
     return contacts
 }
 
+const getProfile = async (userId) => {
+    const profile = await prisma.user.findUnique({
+        where: {
+            id: userId
+        },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            avatarURL: true
+        }
+    })
+    return profile
+}
+
 module.exports = {
     isContact,
     addToContact,

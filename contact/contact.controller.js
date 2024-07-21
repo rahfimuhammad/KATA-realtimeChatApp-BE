@@ -2,7 +2,7 @@ const express = require("express")
 
 const router = express.Router()
 
-const { addToContact, getContact } = require("./contact.service")
+const { addToContact, getContact, getProfile } = require("./contact.service")
 
 router.post("/", async (req, res) => {
     try {
@@ -23,6 +23,15 @@ router.get("/:userId", async (req, res) => {
     try {
         const contacts = await getContact(req.params.userId)
         res.status(200).send(contacts)
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
+})
+
+router.get("/profile/:userId", async (req, res) => {
+    try {
+        const profile = await getProfile(req.params.userId)
+        res.status(200).send(profile)
     } catch (error) {
         res.status(404).send(error.message)
     }
